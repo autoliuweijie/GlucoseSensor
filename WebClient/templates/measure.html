@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>measure</title>
+</head>
+<body>
+<h1>Welcome {{ username }}! </h1>
+
+<h2>测量</h2>
+<form action="./" method="POST" enctype="multipart/form-data">
+    <input type="file" name="video"><br>
+    <input type="submit" value="Upload">
+</form>
+
+<h2>测量结果</h2>
+<br>
+<br>
+<br>
+<br>
+
+<h2>修正结果</h2>
+<form method="POST" enctype="text/plain">
+    血糖:<input type="text" name="blood_glucose">(mmol/L)<br>
+    血氧:<input type="text" name="blood_oxygen">(%)<br>
+    心率:<input type="text" name="heart_rate"><br>
+    体温:<input type="text" name="body_temperature">(C)<br>
+    血压:<input type="text" name="blood_pressure">(mHg)<br>
+    <input type="submit" value="提交"><br>
+</form>
+
+</body>
+</html>
