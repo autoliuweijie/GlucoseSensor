@@ -10,8 +10,8 @@ DEBUG = False
 
 
 # MYSQL Configuration
-MYSQL_HOST = '192.168.199.200'
-MYSQL_USER = 'glucose'
-MYSQL_PASSWORD = 'glucosepassword'
+MYSQL_HOST = '*.*.*.*'
+MYSQL_USER = 'mysqlusername'
+MYSQL_PASSWORD = 'mysqlpassword'
 MYSQL_DATABASE = 'glucose_sensor'
 MYSQL_PORT = 3306
