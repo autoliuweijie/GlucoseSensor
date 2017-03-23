@@ -101,4 +101,5 @@ ENV/
 
 # this project
 settings.py
+create_database.sql
 
