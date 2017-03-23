@@ -4,8 +4,8 @@
 """
 
 # MYSQL Configuration
-MYSQL_HOST = '***.***.***.***'
-MYSQL_USER = 'username'
-MYSQL_PASSWORD = 'password'
+MYSQL_HOST = '192.168.199.200'
+MYSQL_USER = 'glucose'
+MYSQL_PASSWORD = 'glucosepassword'
 MYSQL_DATABASE = 'glucose_sensor'
 MYSQL_PORT = 3306
