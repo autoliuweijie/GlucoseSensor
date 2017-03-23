@@ -98,3 +98,7 @@ ENV/
 *.DS_Store
 *.env/
 
+
+# this project
+settings.py
+
