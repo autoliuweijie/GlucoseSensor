@@ -47,8 +47,8 @@ create table if not exists records(
 );
 
 
-create user 'glucose'@'localhost' identified by 'glucosepassword';
-grant select, update, insert on glucose_sensor.* to 'glucose'@'localhost' identified by 'glucosepassword';
+create user 'glucose_user'@'localhost' identified by 'glucosepassword';
+grant select, update, insert on glucose_sensor.* to 'glucose_user'@'localhost' identified by 'glucosepassword';
 
 
 insert into glucose_sensor.devices(d_id, type, unicode, date, others) values(1, 1, 'ICSLNGM0001', '2017-03-22', 'test');

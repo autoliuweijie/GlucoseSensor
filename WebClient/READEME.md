@@ -4,8 +4,8 @@
 
 先到数据库服务器下，确保后台Mysql服务是开着的，把项目中的create_database.sql文件复制到服务器任意目录中，并修改以下两行：
 
-    create user 'glucose'@'localhost' identified by 'glucosepassword';
-    grant select, update, insert on glucose_sensor.* to 'glucose'@'localhost' identified by 'glucosepassword';
+    create user 'glucose_user'@'localhost' identified by 'glucosepassword';
+    grant select, update, insert on glucose_sensor.* to 'glucose_user'@'localhost' identified by 'glucosepassword';
 
 把'glucose'改成定义的mysql用户名，'localhost'改成允许访问的IP（%表示允许任何IP访问, localhost表示只能从本地访问），'glucosepassword'改成密码. 
 然后执行这个SQL脚本，自动创建数据库。
@@ -16,7 +16,7 @@ $ mysql -uroot -prootpassword -e "source ./create_database.sql"
 
 "root" 和 "rootpassword" 分别是这台服务器中mysql的root账号和密码。
 
-这样数据库就创建好了。你可以用navicat软件来查看这个数据库。
+这样数据库就创建好了。你可以用navicat软件来查看这个数据库。如果是远程访问，请确保数据库开通了远程访问。
 
 ## 1.部署项目
 
