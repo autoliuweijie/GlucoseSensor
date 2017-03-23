@@ -67,6 +67,21 @@ $ deactivate
 
 ### 1.4 启动服务
 
+在settings.py文件中，配置端口和允许访问的IP，打开settings.py文件.
+
+```
+$ vim settings.py
+```
+
+修改如下内容：
+
+    # Service Configuration
+    PORT = 7002
+    HOST = '0.0.0.0'
+    DEBUG = True
+
+保存退出，执行如下命令，开启服务
+
 ```
 $ source .env/bin/activate
 $ python client.py

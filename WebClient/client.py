@@ -6,6 +6,7 @@ from mylib.database.datamangers import UsersTable, RecordsTable
 from mylib.models.nirvideomodels import INirVideoModel
 from mylib.utils.imageutils import array_to_img
 from datetime import datetime
+from settings import PORT, HOST, DEBUG
 
 
 # 配置
@@ -247,4 +248,4 @@ def get_image(img_name):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=7002)
+    app.run(debug=DEBUG, host=HOST, port=PORT)
