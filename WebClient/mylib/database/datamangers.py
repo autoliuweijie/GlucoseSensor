@@ -38,6 +38,21 @@ class DevicesTable(object):
         except:
             return None
 
+    @classmethod
+    def add_new_device(cls, unicode, date, type, others='null'):
+
+        date = date.strftime('%Y-%m-%d')
+
+        try:
+            sql = "insert into devices(unicode, date, type, others) value('%s', '%s', '%s', '%s')"%(unicode, date, type, others)
+            is_success = mysql.query(sql=sql)[0]
+
+            sql = "select d_id from devices where unicode='%s'"%(unicode)
+            d_id = mysql.select(sql=sql)[-1]['d_id']
+            return is_success, d_id
+        except:
+            return False, 0
+
 
 class UsersTable(object):
 

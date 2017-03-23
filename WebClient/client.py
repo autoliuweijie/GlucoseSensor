@@ -2,10 +2,10 @@
 import os, sys
 from flask import Flask, session, redirect, url_for, request, render_template, jsonify, send_file, abort
 from werkzeug.security import generate_password_hash, check_password_hash
-from mylib.database.datamangers import UsersTable, RecordsTable
+from mylib.database.datamangers import UsersTable, RecordsTable, DevicesTable
 from mylib.models.nirvideomodels import INirVideoModel
 from mylib.utils.imageutils import array_to_img
-from datetime import datetime
+from datetime import datetime, date
 from settings import PORT, HOST, DEBUG
 
 
@@ -56,6 +56,21 @@ def login():
             return redirect(url_for('measure'))
         else:
             return render_template("login.html", infomation="Password mistake!")
+
+@app.route("/add_device", methods=['GET', 'POST'])
+def add_device():
+    if request.method == 'GET':
+        return render_template('add_device.html')
+    else:
+        unicode = request.form.get('unicode')
+        type = request.form.get('type')
+        others = request.form.get('others')
+        today = date.today()
+        is_success, d_id = DevicesTable.add_new_device(unicode, today, type, others)
+        if is_success:
+            return render_template('add_device.html', content=u'设备已添加，可继续添加设备')
+        else:
+            return render_template('add_device.html', content=u'设备添加出错，请检查设备信息')
 
 @app.route("/logout", methods=['GET'])
 def logout():
