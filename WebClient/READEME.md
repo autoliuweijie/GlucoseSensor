@@ -32,6 +32,12 @@ $ git clone ********
 
 进入到GlucoseSensor/WebClient目录下，以后如果不特殊指名，所有命令都是在这个目录下执行。
 
+把私密内容的修改从git里排除
+
+```
+$ git update-index --assume-unchanged settings.py create_database.sql
+```
+
 
 ### 1.2 配置数据库账号密码
 
