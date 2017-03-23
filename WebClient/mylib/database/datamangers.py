@@ -5,14 +5,11 @@
 """
 from mylib.database.mysql import Mysql
 from datetime import datetime
+from settings import *
 
 
-# Configuration
-MYSQL_HOST = 'localhost'
-MYSQL_USER = 'glucose'
-MYSQL_PASSWORD = 'glucosepassword'
-MYSQL_DATABASE = 'glucose_sensor'
-MYSQL_PORT = 3306
+# Configuratin
+
 
 
 # Create Mysql
@@ -76,7 +73,9 @@ class UsersTable(object):
         """
         get user info by username
         :param username: username
-        :return: info
+        :return: info dict like {'username': u'liuweijie3', 'u_id': 20L, 'gender': 0, 'age': 12L, 'heights': 12L,
+                            'phone': u'18600117376', 'weights': None, 'unicode': u'ICLSNGM0001', 'password': u'p**',
+                            'email': u'autoliuweijie@163.com', 'diabetes': 1}
         """
         try:
             sql = "select * from users where username='%s';"%(username)
@@ -176,8 +175,47 @@ class RecordsTable(object):
             """
             sql = sql % (reference_blood_glucose, reference_blood_oxygen, reference_heart_rate, reference_body_temperature,
                          reference_blood_pressure, r_id)
+            print sql
             is_success = mysql.query(sql=sql)[0]
             return is_success
 
         except:
             return False
+
+
+if __name__ == "__main__":
+    pass
+    # print DevicesTable.get_device_info_by_unicode('ICSLNGM0001')
+    # print UsersTable.create_new_user(
+    #     username='liuweijie',
+    #     password='liuweijie',
+    #     age=23,
+    #     gender=1,
+    #     diabetes=0,
+    #     unicode='ICSLNGM0001',
+    #     email='liuweijie@163.com'
+    # )
+
+    # gender = UsersTable.get_user_info_by_username('liuweijie')['gender']
+    # print gender
+
+    # dt = datetime(2012,11,11, 11, 11, 11)
+    # ret = RecordsTable.create_new_record(1, dt, 'ICSLNGM0001', '1213312.webm')
+
+    # print RecordsTable.update_predict_values(
+    #     r_id=13,
+    #     predict_blood_glucose=11,
+    #     predict_blood_oxygen=11,
+    #     predict_heart_rate=11,
+    #     predict_body_temperature=11,
+    #     predict_blood_pressure=11
+    # )
+    #
+    # print RecordsTable.update_reference_values(
+    #     r_id=13,
+    #     reference_blood_glucose=11,
+    #     reference_blood_oxygen=11,
+    #     reference_heart_rate=11,
+    #     reference_body_temperature=11,
+    #     reference_blood_pressure=11
+    # )

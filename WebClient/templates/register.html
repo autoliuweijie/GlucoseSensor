@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<h2>请填写注册信息</h2>
+<form action='' method="POST">
+    用户名:<input type="text" name="username" required="required">(仅限英文或数组组成)<br>
+    密码:<input type="text" name="password" required="required">(仅限英文或数组组成)<br>
+    邮箱:<input type="text" name="email" required="required"><br>
+    联系方式:<input type="text" name="phone"><br>
+    年龄:<input type="text" name="age" required="required">(岁)<br>
+    性别: 男<input type="radio" name="gender" value="1" required="required"> 女<input type="radio" name="gender" value="0" required="required"><br>
+    是否患有糖尿病:是<input type="radio" name="diabetes" value="1" required="required"> 否<input type="radio" name="diabetes" value="0" required="required"><br>
+    身高:<input type="text" name="heights">(cm)<br>
+    体重:<input type="text" name="weights">(kg)<br>
+    设备编码:<input type="text" name="unicode" required="required"><br>
+    <input type="submit" value="提交"><br>
+</form>
+{{ infomation }}
+</body>
+</html>

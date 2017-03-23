@@ -32,19 +32,20 @@ create table if not exists records(
   u_id int not null references users(u_id),
   record_time datetime not null,
   unicode char(20) not null references devices(unicode),
-  video_name char(20) not null,
-  predict_blood_glucose int,
-  predict_blood_oxygen int,
-  predict_heart_rate int,
-  predict_body_temperature int,
-  predict_blood_pressure int,
-  reference_blood_glucose int,
-  reference_blood_oxygen int,
-  reference_heart_rate int,
-  reference_body_temperature int,
-  reference_blood_pressure int,
+  video_name char(100) not null,
+  predict_blood_glucose float(10,4),
+  predict_blood_oxygen float(10,4),
+  predict_heart_rate float(10,4),
+  predict_body_temperature float(10,4),
+  predict_blood_pressure float(10,4),
+  reference_blood_glucose float(10,4),
+  reference_blood_oxygen float(10,4),
+  reference_heart_rate float(10,4),
+  reference_body_temperature float(10,4),
+  reference_blood_pressure float(10,4),
   primary key (r_id)
 );
+
 
 create user 'glucose'@'localhost' identified by 'glucosepassword';
 grant select, update, insert on glucose_sensor.* to 'glucose'@'localhost' identified by 'glucosepassword';

@@ -8,7 +8,7 @@
 <h1>Welcome {{ username }}! </h1>
 
 <h2>测量</h2>
-<form action="./" method="POST" enctype="multipart/form-data">
+<form action="/upload_measure" method="POST" enctype="multipart/form-data">
     <input type="file" name="video"><br>
     <input type="submit" value="Upload">
 </form>
@@ -20,7 +20,8 @@
 <br>
 
 <h2>修正结果</h2>
-<form method="POST" enctype="text/plain">
+<form action="/post_reference" method="POST">
+    <input type="hidden" name="r_id" value="20">
     血糖:<input type="text" name="blood_glucose">(mmol/L)<br>
     血氧:<input type="text" name="blood_oxygen">(%)<br>
     心率:<input type="text" name="heart_rate"><br>
@@ -28,6 +29,8 @@
     血压:<input type="text" name="blood_pressure">(mHg)<br>
     <input type="submit" value="提交"><br>
 </form>
+
+<a href="logout">安全退出</a>
 
 </body>
 </html>
