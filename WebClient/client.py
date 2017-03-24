@@ -3,8 +3,9 @@ import os, sys
 from flask import Flask, session, redirect, url_for, request, render_template, jsonify, send_file, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 from mylib.database.datamangers import UsersTable, RecordsTable, DevicesTable
-from mylib.models.nirvideomodels import INirVideoModel
-from mylib.utils.imageutils import array_to_img
+from mylib.models.nirvideomodels import TestNirVideoModel as NirVideoModel
+from mylib.utils.imageutils import array_to_img, save_image
+from mylib.utils.videoutils import load_video
 from datetime import datetime, date
 from settings import PORT, HOST, DEBUG
 
@@ -17,7 +18,7 @@ VIDEO_DIR = 'nirvideos/'
 VIDEO_PATH = os.path.join(DATABASE_PATH, VIDEO_DIR)
 IMAGE_DIR = 'resultimages/'
 IMAGE_PATH = os.path.join(DATABASE_PATH, IMAGE_DIR)
-NIR_VIDEO_MODEL = INirVideoModel()
+NIR_VIDEO_MODEL = NirVideoModel()
 
 
 # 创建Flask App
@@ -26,14 +27,13 @@ app.secret_key = '\xf1\x92Y\xdf\x8ejY\x04\x96\xb4V\x88\xfb\xfc\xb5\x18F\xa3\xee\
 
 
 # 前端界面
-
 @app.route("/", methods=['GET'])
 def index():
-    username = session.get('username')
-    if username is None: #如果没有登录，跳转到登录界面
-        return redirect(url_for('login'))
-    else:
-        return redirect(url_for('measure'))
+    """
+    主界面，用于引导.
+    url: http://ip:port/
+    """
+    return render_template("index.html")
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
@@ -59,6 +59,10 @@ def login():
 
 @app.route("/add_device", methods=['GET', 'POST'])
 def add_device():
+    """
+    添加测量设备界面，通过该界面向数据库中添加设备.
+    url: http://ip:port/add_device
+    """
     if request.method == 'GET':
         return render_template('add_device.html')
     else:
@@ -74,11 +78,19 @@ def add_device():
 
 @app.route("/logout", methods=['GET'])
 def logout():
+    '''
+    登出接口，消除username的session, 登出后回到index界面
+    url: http://ip:port/logout
+    '''
     session.pop('username', None)
     return redirect(url_for('index'))
 
 @app.route("/measure", methods=['GET'])
 def measure():
+    """
+    测量界面
+    url: http://ip:port/measure
+    """
     username = session.get('username')
     if username is None:
         return redirect(url_for('login'))
@@ -87,6 +99,10 @@ def measure():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    '''
+    用户注册界面和注册接口
+    url: http://ip:port/register
+    '''
     if request.method == 'GET':
         return render_template("register.html", infomation='Register')
     else:
@@ -118,7 +134,7 @@ def register():
             heights=heights
         )
         if is_success:
-            return redirect(url_for('login'))
+            return redirect(url_for('index'))
         else:
             return render_template("register.html", infomation=u'用户名已注册或设备编码错误')
 
@@ -128,10 +144,11 @@ def register():
 def upload_measure():
     """
     上传测量的视频，保存视频、计算结果、保存结果、返回结果。
-    <form action="/upload_measure" method="POST" enctype="multipart/form-data">
-        <input type="file" name="video"><br>
-        <input type="submit" value="Upload">
-    </form>
+    上传测量视频的表单如下：
+        <form action="/upload_measure" method="POST" enctype="multipart/form-data">
+            <input type="file" name="video"><br>
+            <input type="submit" value="Upload">
+        </form>
     :return: response json like
             {
               "blood_glucose": 15.5,
@@ -178,8 +195,7 @@ def upload_measure():
 
     # 计算生理参数, 并返回json
     try:
-        predict_result, result_img = NIR_VIDEO_MODEL.predict(video) # 计算生理结果
-
+        predict_result, result_img = NIR_VIDEO_MODEL.predict(video_save_path) # 计算生理结果
 
     except:
         wrong_json['reason'] = 'Predict process is wrong!'
@@ -201,7 +217,7 @@ def upload_measure():
         result_img = array_to_img(result_img)
         img_name = str(r_id) + '.png'
         img_save_url = os.path.join(IMAGE_PATH, img_name)
-        result_img.save(img_save_url)
+        save_image(result_img, img_save_url)
 
         # 返回结果
         predict_result['r_id'] = r_id  # 添加r_id和is_success
@@ -251,7 +267,8 @@ def post_reference():
 @app.route('/database/resultimages/<img_name>', methods=['GET'])
 def get_image(img_name):
     """
-        用来发布/database/resultimages/中的图片，例如：GET http://IP/database/resultimages/33.png, 返回一张图片
+    将/database/resultimages/中的视频发布出去
+    例如：GET http://IP/database/resultimages/33.png, 返回一张图片
     """
     img_url = os.path.join(IMAGE_PATH, img_name)
     try:

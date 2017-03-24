@@ -2,7 +2,7 @@
 
 ## 0.创建数据库
 
-先到数据库服务器下，确保后台Mysql服务是开着的，把项目中的create_database.sql文件复制到服务器任意目录中，并修改以下两行：
+先到数据库服务器下，确保后台Mysql服务是开着的，在服务器任意目录中创建一个新的create_database.sql文件，把项目中的create_database.sql的内容复制到里面，并修改以下两行：
 
     create user 'glucose_user'@'localhost' identified by 'glucosepassword';
     grant select, update, insert on glucose_sensor.* to 'glucose_user'@'localhost' identified by 'glucosepassword';
@@ -62,13 +62,19 @@ $ vim settings.py
 
 ### 1.3 配置运行环境
 
-创建和配置虚拟环境, 假设本机已经安装好virtualenv
+创建虚拟环境和安装必要的python库, 假设本机已经安装好virtualenv
 
 ```
 $ virtualenv .env
 $ source .env/bin/activate
 $ pip install -r requirements.txt
 $ deactivate
+```
+
+引入opencv的python接口，假设本机已经安装好opencv, 其python接口在如下位置，把它cp到virtualenv的python2.7/site-packages/路径下
+
+```
+$ cp /usr/local/lib/python2.7/dist-packages/cv2.so .env/lib/python2.7/site-packages/cv2.so
 ```
 
 ### 1.4 启动服务

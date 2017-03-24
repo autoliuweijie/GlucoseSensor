@@ -62,13 +62,11 @@ def img_to_array(img, data_format=None, dtype='uint8'):
     return x
 
 
-def array_to_img(x, data_format=None, scale=True, dtype='uint8'):
+def array_to_img(x, data_format=None, dtype='uint8'):
     """Converts a 3D Numpy array to a PIL Image instance.
     # Arguments
         x: Input Numpy array.
         data_format: Image data format.
-        scale: Whether to rescale image values
-            to be within [0, 255].
     # Returns
         A PIL Image instance.
     # Raises
@@ -93,12 +91,6 @@ def array_to_img(x, data_format=None, scale=True, dtype='uint8'):
     # but target PIL image has format (width, height, channel)
     if data_format == 'channels_first':
         x = x.transpose(1, 2, 0)
-    if scale:
-        x = x + max(-np.min(x), 0)
-        x_max = np.max(x)
-        if x_max != 0:
-            x /= x_max
-        x *= 255
     if x.shape[2] == 3:
         # RGB
         return pil_image.fromarray(x.astype('uint8'), 'RGB')
@@ -107,6 +99,19 @@ def array_to_img(x, data_format=None, scale=True, dtype='uint8'):
         return pil_image.fromarray(x[:, :, 0].astype('uint8'), 'L')
     else:
         raise ValueError('Unsupported channel number: ', x.shape[2])
+
+
+def bgr_to_rgb_array(bgr_array):
+    return bgr_array[:, :, ::-1]
+
+def save_image(img, url):
+    if not isinstance(img, pil_image.Image):
+        try:
+            img = array_to_img(img)
+        except:
+            raise ValueError('Error img format!')
+    img.save(url)
+
 
 
 if __name__ == "__main__":
