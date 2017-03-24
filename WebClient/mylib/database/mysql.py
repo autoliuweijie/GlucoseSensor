@@ -2,7 +2,6 @@
 # -*-coding:UTF-8-*-
 import sys, MySQLdb, traceback
 import time
-import logging
 
 
 class Mysql:
@@ -22,10 +21,6 @@ class Mysql:
         self.charset = charset
         self.conn = None
         is_success = self._conn()
-        if is_success:
-            logging.info('mysql connect successfully!')
-        else:
-            logging.warning('mysql connect failed!')
 
     def _conn(self):
         try:
@@ -54,9 +49,6 @@ class Mysql:
                 _number += 1
                 time.sleep(stime)  # 连接不成功,休眠3秒钟,继续循环，知道成功或重试次数结束
 
-        if _number > num:
-            logging.warning('mysql reconnect failed!')
-
     def select(self, sql=''):
         try:
             self._reConn()
@@ -66,7 +58,6 @@ class Mysql:
             self.cursor.close()
             return result
         except MySQLdb.Error, e:
-            logging.warning("Error %d: %s" % (e.args[0], e.args[1]))
             return None
 
     def select_limit(self, sql='', offset=0, length=20):

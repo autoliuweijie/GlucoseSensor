@@ -8,6 +8,7 @@ from mylib.utils.imageutils import array_to_img, save_image
 from mylib.utils.videoutils import load_video
 from datetime import datetime, date
 from settings import PORT, HOST, DEBUG
+import logging
 
 
 # 配置
@@ -19,11 +20,22 @@ VIDEO_PATH = os.path.join(DATABASE_PATH, VIDEO_DIR)
 IMAGE_DIR = 'resultimages/'
 IMAGE_PATH = os.path.join(DATABASE_PATH, IMAGE_DIR)
 NIR_VIDEO_MODEL = NirVideoModel()
+LOG_FILE = os.path.join(ROOT_PATH, 'log.txt')
 
 
 # 创建Flask App
 app = Flask(__name__)
 app.secret_key = '\xf1\x92Y\xdf\x8ejY\x04\x96\xb4V\x88\xfb\xfc\xb5\x18F\xa3\xee\xb9\xb9t\x01\xf0\x96'
+
+
+# 配置日志系统
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+    datefmt='%a, %d %b %Y %H:%M:%S',
+    filename=LOG_FILE,
+    filemode='a'
+)
 
 
 # 前端界面
