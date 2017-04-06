@@ -27,6 +27,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+*.swp
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -97,9 +98,4 @@ ENV/
 *.idea/
 *.DS_Store
 *.env/
-
-
-# this project
-settings.py
-create_database.sql
 

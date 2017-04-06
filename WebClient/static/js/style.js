@@ -1,0 +1,1 @@
+$(".data-item-right").height($("#data-item-left").height())

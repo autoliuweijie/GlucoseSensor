@@ -47,6 +47,7 @@ def index():
     """
     return render_template("index.html")
 
+
 @app.route("/login", methods=['POST', 'GET'])
 def login():
     if request.method == 'GET':
@@ -69,6 +70,7 @@ def login():
         else:
             return render_template("login.html", infomation="Password mistake!")
 
+
 @app.route("/add_device", methods=['GET', 'POST'])
 def add_device():
     """
@@ -88,6 +90,7 @@ def add_device():
         else:
             return render_template('add_device.html', content=u'设备添加出错，请检查设备信息')
 
+
 @app.route("/logout", methods=['GET'])
 def logout():
     '''
@@ -96,6 +99,7 @@ def logout():
     '''
     session.pop('username', None)
     return redirect(url_for('index'))
+
 
 @app.route("/measure", methods=['GET'])
 def measure():
@@ -108,6 +112,7 @@ def measure():
         return redirect(url_for('login'))
     else:
         return render_template("measure.html", username=username)
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -194,10 +199,9 @@ def upload_measure():
         video_save_path = os.path.join(VIDEO_PATH, video_name)
         video = request.files['video']
         video.save(video_save_path)
-
         # 写入数据库
         is_success, r_id = RecordsTable.create_new_record(u_id=u_id, record_time=now, unicode=unicode, video_name=video_name)
-
+	
         if not is_success:
             wrong_json['reason'] = 'Inserting Video into mysql is wrong!'
             return jsonify(wrong_json)
@@ -240,6 +244,7 @@ def upload_measure():
         wrong_json['reason'] = 'Saving Result is wrong!'
         return jsonify(wrong_json)
 
+
 @app.route('/post_reference', methods=['POST'])
 def post_reference():
     """
@@ -275,6 +280,7 @@ def post_reference():
             return "Error"
     except:
         return "Error"
+
 
 @app.route('/database/resultimages/<img_name>', methods=['GET'])
 def get_image(img_name):

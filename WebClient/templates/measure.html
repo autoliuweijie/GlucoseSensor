@@ -1,36 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>measure</title>
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+<link rel="stylesheet" href="/static/css/style.css">
+<!-- jQuery -->
+	<script src="/static/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+
 </head>
-<body>
-<h1>Welcome {{ username }}! </h1>
+<body style="background-image: url(/static/img/bg_img.jpg);">
+<div class="fh5co-main container position:absolute">
+	<div class="fh5co-tab-wrap">
+		<ul class="fh5co-tab-menu">
+			<li class="active">
+				<a href="#">
+					<span class="icon icon-glass"></span>
+					<span class="menu-text">Profile</span>
+				</a>
+			</li>
+				
+		</ul>
+	</div>
+	<div class="row">
+		<a ><button class="btn-circle center begin">开始测量</button></a>
+	</div>
+	<div class="row center hidden wait">
+		<div id="loading-center-absolute">
+		<div class="object" id="object_one"></div>
+		<div class="object" id="object_two"></div>
+		<div class="object" id="object_three"></div>
+		<div class="object" id="object_four"></div>
+		<div class="object" id="object_five"></div>
+		<div class="object" id="object_six"></div>
+		<div class="object" id="object_seven"></div>
+		<div class="object" id="object_eight"></div>
+		<div class="object" id="object_big"><div class="big_text"><text>等待中</text></div></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5 data-content">
+			<div class="row">
+                <ul class="list-group">
+                    <li class="list-group-item" id="data-item-left"><strong>测量结果</strong></li>
+                    <li class="list-group-item">血糖&nbsp&nbsp&nbsp <input type="number" readOnly="true" id="blood_glucose"></input></li>
+                    <li class="list-group-item">血氧&nbsp&nbsp&nbsp <input type="number" readOnly="true" id="blood_oxygen">&nbsp&nbsp</input></li>
+                    <li class="list-group-item">血压&nbsp&nbsp&nbsp <input type="number" readOnly="true" id="blood_pressure">&nbsp&nbsp</input></li>
+                    <li class="list-group-item">体温&nbsp&nbsp&nbsp <input type="number" readOnly="true" id="body_temperature">&nbsp&nbsp</input></li>
+                    <li class="list-group-item">心率&nbsp&nbsp&nbsp <input type="number" readOnly="true" id="heart_rate">&nbsp&nbsp</input></li>
+                    
+                </ul>
+				</div>
+		</div>
+		<div class="col-md-5 data-content" style="float:right">
+			<div class="row">
+                
+				<form id="i-modify">
+				<ul class="list-group">
+                    <li class="list-group-item"><strong>校正结果</strong></li>
+                    <li class="list-group-item">血糖&nbsp&nbsp&nbsp <input type="number" name="blood_glucose"></input></li>
+                    <li class="list-group-item">血氧&nbsp&nbsp&nbsp <input type="number" name="blood_oxygen"></input></li>
+                    <li class="list-group-item">血压&nbsp&nbsp&nbsp <input type="number" name="blood_pressure"></input></li>
+                    <li class="list-group-item">体温&nbsp&nbsp&nbsp <input type="number" name="heart_rate"></input></li>
+                    <li class="list-group-item">心率&nbsp&nbsp&nbsp <input type="number" name="body_temperature"></input></li>
+					<input class="list-group-item hidden" id="r_id" name="r_id"></input>
+					</ul>
+					<a class="fix-a"><button type="button" class="cd-btn hint motify-btn" data-hint="上传成功">校正</button></a>
+                </form>
+				
+				</div>
+		</div>      
+	</div>
+	
+	<div>
+	<img class="feature-pic hidden center">
+	</div>
+   </div>
 
-<h2>测量</h2>
-<form action="/upload_measure" method="POST" enctype="multipart/form-data">
-    <input type="file" name="video"><br>
-    <input type="submit" value="Upload">
-</form>
-
-<h2>测量结果</h2>
-<br>
-<br>
-<br>
-<br>
-
-<h2>修正结果</h2>
-<form action="/post_reference" method="POST">
-    <input type="hidden" name="r_id" value="20">
-    血糖:<input type="text" name="blood_glucose">(mmol/L)<br>
-    血氧:<input type="text" name="blood_oxygen">(%)<br>
-    心率:<input type="text" name="heart_rate"><br>
-    体温:<input type="text" name="body_temperature">(C)<br>
-    血压:<input type="text" name="blood_pressure">(mHg)<br>
-    <input type="submit" value="提交"><br>
-</form>
-
-<a href="logout">安全退出</a>
-
+</div>
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/style.js"></script>
+	
+	<script src="/static/js/main.js"></script>
+	<script>
+	</script>
 </body>
 </html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+<meta charset="utf-8">
+<meta name="apple-itunes-app" content="app-id=432274380">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="description" content="刘博士和你谈笑风生。"/>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>刘博士和你谈笑风生</title>
+<link rel="shortcut icon" type="image/x-icon" href="/static/img/tm-img-02-tn.jpg" media="screen" />
+<link rel="stylesheet" href="/static/css/main.92bd852f.css">
+<meta name="google-site-verification" content="FTeR0c8arOPKh8c5DYh_9uu98_zJbaWw53J-Sch9MTg" />
+<meta name="baidu-site-verification" content="KPFppAFoYF4Kkdv9" />
+<meta property="qc:admins" content="00544670776201056375" />
+<meta id="znonce" name="znonce" content="1517d0ef73a84f70801243ea265cbf1d">
+<!--[if lt IE 9]>
+<link href="/static/components/respond/cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+<script src="/static/components/respond/cross-domain/respond.proxy.js"></script>
+<![endif]-->
+<script src="/static/js/jquery-1.11.3.min.js"></script>         <!-- jQuery (https://jquery.com/download/) -->
+        
+</head>
+
+<script>
+$(document).ready(function(){
+	
+	$("#signin").click(function(){
+		$("#uporin").attr("data-active-index",1)
+		$("#signup-block").removeClass("selected");
+		$("#signin-block").addClass("selected");
+	});
+
+	$("#signup").click(function(){
+		$("#uporin").attr("data-active-index",0)
+		$("#signup").addClass("active");
+		$("#signin").removeClass("active");
+		$("#signin-block").removeClass("selected");
+		$("#signup-block").addClass("selected");
+	});
+});
+</script>
+<body class="zhi ">
+
+
+
+<div class="index-main">
+<div class="index-main-body">
+<div class="index-header">
+
+<h1 class="hide-text">刘伟杰</h1>
+
+<h2 class="subtitle">成为海贼王的男人</h2>
+</div>
+
+<div class="desk-front sign-flow clearfix sign-flow-simple">
+
+<div class="index-tab-navs">
+<div id="uporin" class="navs-slider" data-active-index=0>
+<a href="#signup"  id="signup">注册</a>
+<a href="#signin" id="signin">登录</a>
+<span class="navs-slider-bar"></span>
+
+</div>
+</div>
+
+
+<div id="signin-block" class="view view-signin" data-za-module="SignInForm">
+<form method="POST" action="/login" method="POST">
+<input type="hidden" name="_xsrf" value="2e795de65b61a9fc0e32d2ed2632b10a"/>
+<div class="group-inputs">
+
+<div class="account input-wrapper">
+
+<input type="text" name="username" aria-label="用户名" placeholder="用户名" required>
+</div>
+<div class="verification input-wrapper">
+<input type="password" name="password" aria-label="密码" placeholder="密码" required /><button type="button" class="send-code-button">获取验证码</button>
+</div>
+
+<div class="Captcha input-wrapper" data-type="cn" data-za-module="Captcha">
+<div class="Captcha-operate">
+<input type="hidden" name="captcha" required data-rule-required="true" data-msg-required="请点击图中所有倒立的文字">
+<input type="hidden" name="captcha_type" value="cn" required>
+<label class="Captcha-prompt">请点击图中所有倒立的文字</label>
+<span class="Captcha-refresh js-refreshCaptcha sprite-index-icon-refresh"></span>
+</div>
+<div class="Captcha-imageConatiner">
+<img class="Captcha-image" alt="验证码" >
+</div>
+</div>
+
+</div>
+<div class="button-wrapper command">
+<button class="sign-button submit" type="submit">登录</button>
+</div>
+<div class="signin-misc-wrapper clearfix">
+
+<button type="button" class="signin-switch-button">手机验证码登录</button>
+
+<a class="unable-login" href="#">无法登录？</a>
+</div>
+
+<div class="social-signup-wrapper" data-za-module="SNSSignIn">
+<span class="name js-toggle-sns-buttons">社交帐号登录</span>
+
+<div class="sns-buttons">
+<a title="微信登录" class="js-bindwechat" href="#"><i class="sprite-index-icon-wechat"></i></a>
+<a title="微博登录" class="js-bindweibo" href="#"><i class="sprite-index-icon-weibo"></i></a>
+<a title="QQ 登录" class="js-bindqq" href="#"><i class="sprite-index-icon-qq"></i></a>
+</div>
+
+
+</div>
+
+</form>
+
+<div class="QRCode">
+<button class="QRCode-toggleButton">
+<span class="sprite-global-icon-qrcode"></span>
+<span class="QRCode-toggleButtonText ">一点微小的贡献</span>
+</button>
+<div class="QRCode-card">
+<div class="QRCode-image"></div>
+<div class="sprite-index-icon-arrow"></div>
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+<div id="signup-block" class="view view-signup selected" data-za-module="SignUpForm">
+<form class="zu-side-login-box" action="/register" id="sign-form-1" autocomplete="off" method="POST">
+		<input type="password" hidden> 
+		<input type="hidden" name="_xsrf" value="2e795de65b61a9fc0e32d2ed2632b10a"/>
+		<div class="group-inputs">
+
+
+		<div class="name input-wrapper">
+		<input required type="text" name="username" required="required" aria-label="用户名" placeholder="用户名">
+		</div>
+		<div class="email input-wrapper">
+
+		<input required type="text" class="account" name="phone" aria-label="手机号（仅支持中国大陆）" placeholder="手机号（仅支持中国大陆）">
+
+		</div>
+
+		<div class="input-wrapper">
+		<input required type="password" name="password" required="required" aria-label="密码" placeholder="密码（不少于 6 位）" autocomplete="off">
+		</div>
+
+		<div class="email input-wrapper">
+		<input required type="" name="email" required="required" aria-label="邮箱" placeholder="邮箱">
+		</div>
+
+		<div class="email input-wrapper">
+		<input required type="" name="age" required="required" aria-label="年龄" placeholder="年龄">
+		</div>
+
+		<div class="email input-wrapper">
+		<input required type="" name="heights" aria-label="身高" placeholder="身高">
+		</div>
+
+		<div class="email input-wrapper">
+		<input required type="" name="weights" aria-label="体重" placeholder="体重">
+		</div>
+
+		<div >
+		<text style="font-size: 14px;line-height: 18px;color: #787878;border: 0;outline: 0;padding: 30px 13px;
+			height: 48px;-webkit-text-fill-color: #ccc;">性别&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </text>
+			男          <input type="radio" value="1" class="rdo" required="required" name="gender" >
+			女          <input type="radio"  class="rdo" name="gender" value="0" required="required" name="gender" >
+		</div>
+
+		<div>
+		<text style="font-size: 14px;line-height: 18px;color: #787878;border: 0;outline: 0;padding: 30px 13px;
+			height: 48px;-webkit-text-fill-color: #ccc;">是否患有糖尿病</text>
+			是			<input type="radio" name="diabetes" value="1" required="required"> 
+			否			<input type="radio" name="diabetes" value="0" required="required">
+		</div>
+
+		
+		</div>
+		<div class="button-wrapper command">
+		<button class="sign-button submit" type="submit">注册</button>
+		</div>
+</form>
+
+<p class="agreement-tip">点击「注册」按钮，即代表你同意<a href="/terms" target="_blank">《协议》</a></p>
+
+<div class="QRCode">
+<button class="QRCode-toggleButton">
+<span class="sprite-global-icon-qrcode"></span>
+<span class="QRCode-toggleButtonText ">微小贡献</span>
+</button>
+<div class="QRCode-card">
+<div class="QRCode-image"></div>
+<div class="sprite-index-icon-arrow"></div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+</div>
+<!--
+<div class="footer" style="position:static">
+
+<span>&copy; 2017 刘博士</span>
+<span class="dot">·</span>
+<a target="_blank" href="/roundtable">刘博士</a>
+<span class="dot">·</span>
+<a target="_blank" href="/explore" data-za-c="explore" data-za-a="visit_explore" data-za-l="home_bottom_explore">刘博士</a>
+<span class="dot">·</span>
+<a target="_blank" href="/app">刘博士</a>
+<span class="dot">·</span>
+
+
+<a href="/org/signin" class="footer-mobile-show">使用机构帐号登录</a>
+
+<span class="dot footer-mobile-show">·</span>
+
+<a href="/contact" class="footer-mobile-show">联系我们</a>
+<span class="dot">·</span>
+<a target="_blank" href="/careers">谈笑风生</a>
+<br />
+<a href="" target="_blank">刘博士</a>
+<span class="dot">·</span>
+<span>这是个伟大项目</span>
+<span class="dot">·</span>
+<a href="" target="_blank">哈哈哈</a>
+
+</div>
+
+
+
+<meta name="entry" content="ZH.entrySignPage" data-module-id="page-index">
+
+
+<input type="hidden" name="_xsrf" value="2e795de65b61a9fc0e32d2ed2632b10a"/>
+-->
+</body>
+
+</html>
